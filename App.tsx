@@ -33,7 +33,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache() as any
 });
 
-console.log('-=-=-=- Link -=-=-', link);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

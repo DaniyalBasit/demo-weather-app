@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import CityTab from '../components/CityTab';
 
 import { Text, View } from '../components/Themed';
@@ -12,7 +12,9 @@ export default function CitiesScreen() {
 
   return (
     <View style={styles.container}>
-      <CityTab city={DefaultCities[0]} />
+      {DefaultCities.map(city => (
+        <CityTab key={city.name} city={city} />
+      ))}
     </View>
   );
 }
