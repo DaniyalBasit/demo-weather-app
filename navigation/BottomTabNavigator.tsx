@@ -20,7 +20,7 @@ export default function BottomTabNavigator() {
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="Cities"
-        component={TabOneNavigator}
+        component={CitiesNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="enviromento" color={color} />,
         }}
@@ -46,7 +46,7 @@ function TabBarIcon(props: { name: string; color: string }) {
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const CitiesStack = createStackNavigator<CitiesParamList>();
 
-function TabOneNavigator() {
+function CitiesNavigator() {
   return (
     <CitiesStack.Navigator>
       <CitiesStack.Screen

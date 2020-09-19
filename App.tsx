@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Alert } from "react-native";
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import ApolloClient from 'apollo-client';
 import Amplify from 'aws-amplify';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -14,6 +15,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import AppSyncConfig from './aws-exports';
+import { rootReducer } from './store';
 
 Amplify.configure(AppSyncConfig);
 
@@ -33,6 +35,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache() as any
 });
 
+const store = createStore(rootReducer);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -43,10 +46,12 @@ export default function App() {
   } else {
     return (
       <ApolloProvider client={client as any}>
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
+        <Provider store={store}>
+          <SafeAreaProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </SafeAreaProvider>
+        </Provider>
       </ApolloProvider>
     );
   }

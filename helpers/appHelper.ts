@@ -3,13 +3,13 @@ export const DefaultCities = [
     name: "London",
     lat: "51.5074",
     lon: "-0.1278",
-    url: "https://london.ac.uk/sites/default/files/styles/promo_large/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=BMaDUhjp",
+    url: "https://www.discoverbritainmag.com/wp-content/uploads/2018/05/Victorian-London-Landmarks.jpg",
   },
   {
     name: "New York",
     lat: "40.7128",
     lon: "-74.0060",
-    url: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Lower_Manhattan_skyline_-_June_2017.jpg",
+    url: "https://cdn.britannica.com/66/154566-050-36E73C15/Times-Square-New-York-City.jpg",
   },
   {
     name: "Lahore",
@@ -21,6 +21,15 @@ export const DefaultCities = [
     name: "Tokyo",
     lat: "35.6762",
     lon: "139.6503",
-    url: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg",
+    url: "https://www.planetware.com/photos-large/JPN/japan-tokyo-asakusa-senso-ji-temple.jpg",
   }
 ]
+
+export const humanize = (str: string) => {
+  return str
+    .replace(/^[\s_]+|[\s_]+$/g, "")
+    .replace(/[_\s]+/g, " ")
+    .replace(/^[a-z]/, function (m) {
+      return m.toUpperCase();
+    });
+};

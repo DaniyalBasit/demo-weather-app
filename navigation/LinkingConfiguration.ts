@@ -4,7 +4,7 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      Home: {
         screens: {
           Cities: {
             screens: {
@@ -18,6 +18,7 @@ export default {
           },
         },
       },
+      CityDetails: 'cityDetails',
       NotFound: '*',
     },
   },
