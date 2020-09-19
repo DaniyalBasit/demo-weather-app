@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-// this is an auto generated file. This will be overwritten
 import { gql } from '@apollo/client'
 
 export const CURRENT_WEATHER = gql`
@@ -22,58 +21,9 @@ export const CURRENT_WEATHER = gql`
   }
 `;
 
-
-export const weatherByCity = gql`
+export const WEEKLY_WEATHER = gql`
   query WeatherByCity($lat: String!, $lon: String!, $units: String!) {
     weatherByCity(lat: $lat, lon: $lon, units: $units) {
-      lat
-      lon
-      timezone
-      timezone_offset
-      current {
-        sunrise
-        dt
-        sunset
-        temp
-        feels_like
-        pressure
-        humidity
-        dew_point
-        uvi
-        clouds
-        visibility
-        wind_speed
-        wind_deg
-        weather {
-          id
-          main
-          description
-          icon
-        }
-      }
-      minutely {
-        dt
-        precipitation
-      }
-      hourly {
-        dt
-        temp
-        feels_like
-        pressure
-        humidity
-        dew_point
-        clouds
-        visibility
-        wind_speed
-        wind_deg
-        weather {
-          id
-          main
-          description
-          icon
-        }
-        pop
-      }
       daily {
         dt
         sunrise
@@ -106,6 +56,32 @@ export const weatherByCity = gql`
         clouds
         pop
         uvi
+      }
+    }
+  }
+`;
+
+export const DAILY_WEATHER = gql`
+  query WeatherByCity($lat: String!, $lon: String!, $units: String!) {
+    weatherByCity(lat: $lat, lon: $lon, units: $units) {
+      hourly {
+        dt
+        temp
+        feels_like
+        pressure
+        humidity
+        dew_point
+        clouds
+        visibility
+        wind_speed
+        wind_deg
+        weather {
+          id
+          main
+          description
+          icon
+        }
+        pop
       }
     }
   }
