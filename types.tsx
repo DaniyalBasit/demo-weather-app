@@ -9,15 +9,15 @@ export type RootStackParamList = {
 
 export type BottomTabParamList = {
   Cities: undefined;
-  TabTwo: undefined;
+  Search: undefined;
 };
 
 export type CitiesParamList = {
   CitiesScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type SearchParamList = {
+  SearchScreen: undefined;
 };
 
 export type CityParamList = {
@@ -38,6 +38,12 @@ export type City = {
   url: string;
 }
 
+export type CityQueryVars = {
+  lat: string;
+  lon: string;
+  units: string;
+}
+
 type  WeatherDescription = {
   main: string;
   description: string;
@@ -50,4 +56,32 @@ export type CurrentWeather = {
   humidity: number;
   wind_speed: number;
   weather: WeatherDescription[];
+}
+
+export type DailyWeather = {
+  dt: number;
+  clouds: number;
+  dew_point: number;
+  humidity: number;
+  pressure: number;
+  uvi: number;
+  weather: WeatherDescription[];
+  temp: {
+    day: number;
+    eve: number;
+    max: number;
+    min: number;
+    morn: number;
+    night: number;
+  }
+  feels_like: {
+    day: number;
+    eve: number;
+    morn: number;
+    night: number;
+  }
+}
+
+export type WeeklyWeather = {
+  weekly: DailyWeather[];
 }

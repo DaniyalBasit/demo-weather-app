@@ -16,6 +16,7 @@ import {
   RootScreenNavigationProp,
   RootScreenRouteProp,
   CurrentWeather,
+  CityQueryVars,
 } from '../../types';
 import { setCity, setCurrentWeather } from '../../store/currentCity/actions';
 
@@ -32,23 +33,18 @@ interface WeatherData {
   };
 }
 
-interface CityVars {
-  lat: string;
-  lon: string;
-  units: string;
-}
-
 const mapDispatch = {
   setCurrentCity: (city: City) => setCity(city),
-  setCurrentWeather: (currentWeather: CurrentWeather) => setCurrentWeather(currentWeather)
+  setCurrentWeather: (currentWeather: CurrentWeather) =>
+    setCurrentWeather(currentWeather),
 };
 
 const connector = connect(null, mapDispatch);
 
-type PropsFromRedux = ConnectedProps<typeof connector>
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function CityItem(props: Props & PropsFromRedux) {
-  const { loading, error, data } = useQuery<WeatherData, CityVars>(
+  const { loading, error, data } = useQuery<WeatherData, CityQueryVars>(
     CURRENT_WEATHER,
     { variables: { lat: props.city.lat, lon: props.city.lon, units: 'metric' } },
   );

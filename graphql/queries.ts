@@ -26,8 +26,15 @@ export const WEEKLY_WEATHER = gql`
     weatherByCity(lat: $lat, lon: $lon, units: $units) {
       daily {
         dt
-        sunrise
-        sunset
+        clouds
+        dew_point
+        humidity
+        pressure
+        uvi
+        weather {
+          main
+          description
+        }
         temp {
           day
           min
@@ -42,20 +49,6 @@ export const WEEKLY_WEATHER = gql`
           eve
           morn
         }
-        pressure
-        humidity
-        dew_point
-        wind_speed
-        wind_deg
-        weather {
-          id
-          main
-          description
-          icon
-        }
-        clouds
-        pop
-        uvi
       }
     }
   }

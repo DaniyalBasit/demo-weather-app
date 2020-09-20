@@ -6,8 +6,8 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import CitiesScreen from '../screens/CitiesScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, CitiesParamList, TabTwoParamList } from '../types';
+import SearchScreen from '../screens/SearchScreen';
+import { BottomTabParamList, CitiesParamList, SearchParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -26,8 +26,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Search"
+        component={SearchNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="search1" color={color} />,
         }}
@@ -58,16 +58,16 @@ function CitiesNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const SearchStack = createStackNavigator<SearchParamList>();
 
-function TabTwoNavigator() {
+function SearchNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <SearchStack.Navigator>
+      <SearchStack.Screen
+        name="SearchScreen"
+        component={SearchScreen}
+        options={{ headerTitle: 'Search Cities' }}
       />
-    </TabTwoStack.Navigator>
+    </SearchStack.Navigator>
   );
 }

@@ -11,9 +11,9 @@ export default {
               CitiesScreen: 'cities',
             },
           },
-          TabTwo: {
+          Search: {
             screens: {
-              TabTwoScreen: 'two',
+              SearchScreen: 'two',
             },
           },
         },
