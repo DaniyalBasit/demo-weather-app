@@ -1,7 +1,9 @@
 import { Alert } from 'react-native';
+import Constants from 'expo-constants';
 import Geocoder from 'react-native-geocoding';
 
-Geocoder.init('AIzaSyAhonU0_TdAQ2jiIu9DyGKt5FH_OtvNPjk');
+const { geoCodeKey } = Constants.manifest.extra
+Geocoder.init(geoCodeKey);
 
 async function getGeocodedLocation(city: string) {
   try {

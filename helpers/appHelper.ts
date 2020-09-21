@@ -39,6 +39,8 @@ export const weatherImage = (weather: string) => {
     return 'https://images.financialexpress.com/2020/04/sky1200.jpg?w=1200&h=800&imflag=true';
   } else if (weather === 'Haze') {
     return 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXmzTgZmM4LIsShvaUgozsJrcnLZvrT9CICA&usqp=CAU';
+  } else if (weather == 'Smoke') {
+    return 'https://c0.wallpaperflare.com/preview/992/147/619/weather-smoke-smog-pollution.jpg';
   }
   return 'https://wallpapercave.com/wp/X49EwD0.jpg';
 }
@@ -52,6 +54,8 @@ export const weatherIcon = (weather: string) => {
     return 'weather-sunny';
   } else if (weather === 'Haze') {
     return 'weather-hazy';
+  } else if (weather == 'Smoke') {
+    return 'weather-fog';
   }
   return 'weather-sunset';
 }
