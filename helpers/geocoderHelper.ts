@@ -6,7 +6,6 @@ Geocoder.init('AIzaSyAhonU0_TdAQ2jiIu9DyGKt5FH_OtvNPjk');
 async function getGeocodedLocation(city: string) {
   try {
     const json = await Geocoder.from(city);
-    console.log('-=-=-=- RESULT -=-=-=', json.results[0])
     if (json.results[0].geometry.location_type === "APPROXIMATE") {
       return json.results[0].geometry.location;
     } else {

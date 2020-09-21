@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  useWindowDimensions,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
@@ -21,6 +20,7 @@ import {
 } from '../../types';
 import { setCity, setCurrentWeather } from '../../store/currentCity/actions';
 import { weatherIcon, weatherImage } from '../../helpers/appHelper';
+import Layout from "../../constants/Layout";
 
 interface Props {
   city: City;
@@ -46,15 +46,15 @@ const connector = connect(null, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function CityItem(props: Props & PropsFromRedux) {
+  const { height } = Layout.window;
   const { loading, error, data } = useQuery<WeatherData, CityQueryVars>(
     CURRENT_WEATHER,
     { variables: { lat: props.city.lat, lon: props.city.lon, units: 'metric' } },
   );
-  const windowHeight = useWindowDimensions().height;
 
   if (error) {
     return (
-      <View style={[styles.container, { height: windowHeight / 6 }]}>
+      <View style={[styles.container, { height: height / 6 }]}>
         <Text>An error Occurred: {`${error}`}</Text>
       </View>
     );
@@ -70,15 +70,15 @@ function CityItem(props: Props & PropsFromRedux) {
 
   return (
     <TouchableOpacity onPress={handleTouch}>
-      <View style={[styles.container, { height: windowHeight / 6 }]}>
+      <View style={[styles.container, { height: height / 6 }]}>
         <ImageBackground
           source={{
             uri: weatherImage(
               data ? data.weatherByCity.current.weather[0].main : '',
             ),
           }}
-          style={[styles.image, { height: windowHeight / 6 }]}>
-          <View style={[styles.background, { height: windowHeight / 6 }]}>
+          style={[styles.image, { height: height / 6 }]}>
+          <View style={[styles.background, { height: height / 6 }]}>
             <View style={styles.descriptionWrap}>
               <View style={styles.descriptionWithIcon}>
                 {data && data.weatherByCity.current && (
