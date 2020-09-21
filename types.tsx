@@ -35,7 +35,6 @@ export type City = {
   name: string;
   lat: string;
   lon: string;
-  url: string;
 }
 
 export type CityQueryVars = {

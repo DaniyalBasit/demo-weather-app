@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useQuery } from '@apollo/react-hooks';
 import { connect, ConnectedProps } from 'react-redux';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { CURRENT_WEATHER } from '../../graphql/queries';
 import {
@@ -19,6 +20,7 @@ import {
   CityQueryVars,
 } from '../../types';
 import { setCity, setCurrentWeather } from '../../store/currentCity/actions';
+import { weatherIcon, weatherImage } from '../../helpers/appHelper';
 
 interface Props {
   city: City;
@@ -62,7 +64,7 @@ function CityItem(props: Props & PropsFromRedux) {
     if (data) {
       props.navigation.navigate('CityDetails');
       props.setCurrentCity(props.city);
-      props.setCurrentWeather(data?.weatherByCity.current);
+      props.setCurrentWeather(data.weatherByCity.current);
     }
   }
 
@@ -70,22 +72,37 @@ function CityItem(props: Props & PropsFromRedux) {
     <TouchableOpacity onPress={handleTouch}>
       <View style={[styles.container, { height: windowHeight / 6 }]}>
         <ImageBackground
-          source={{ uri: props.city.url }}
+          source={{
+            uri: weatherImage(
+              data ? data.weatherByCity.current.weather[0].main : '',
+            ),
+          }}
           style={[styles.image, { height: windowHeight / 6 }]}>
           <View style={[styles.background, { height: windowHeight / 6 }]}>
             <View style={styles.descriptionWrap}>
-              <Text style={styles.text}>
-                {loading
-                  ? `...`
-                  : `${data?.weatherByCity.current.weather[0].main}`}
-              </Text>
+              <View style={styles.descriptionWithIcon}>
+                {data && data.weatherByCity.current && (
+                  <MaterialCommunityIcons
+                    size={36}
+                    name={weatherIcon(
+                      `${data.weatherByCity.current.weather[0].main}`,
+                    )}
+                    color={'#fff'}
+                  />
+                )}
+                <Text style={styles.text}>
+                  {loading
+                    ? `...`
+                    : `${data && data.weatherByCity.current.weather[0].main}`}
+                </Text>
+              </View>
             </View>
             <View style={styles.infoWrap}>
               <Text style={styles.text}>{props.city.name}</Text>
               <Text style={styles.text}>
                 {loading
                   ? `...`
-                  : `${data && Math.round(data?.weatherByCity.current.temp)}°C`}
+                  : `${data && Math.round(data.weatherByCity.current.temp)}°C`}
               </Text>
             </View>
           </View>
@@ -109,6 +126,10 @@ const styles = StyleSheet.create({
   descriptionWrap: {
     flex: 1,
     alignItems: 'flex-end',
+  },
+  descriptionWithIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   infoWrap: {
     flex: 1,

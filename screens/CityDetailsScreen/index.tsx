@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Alert, StyleSheet, Text } from 'react-native';
 import { connect, ConnectedProps } from 'react-redux';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -40,6 +40,10 @@ function CityDetailsScreen(props: PropsFromRedux) {
         },
       },
     );
+
+    if (error) {
+      Alert.alert(`Error occurred: ${error}`);
+    }
 
     return (
       <View style={styles.flexOne}>
